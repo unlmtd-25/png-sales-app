@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    height: 100%;
+  }
+  body {
+    background-color: #f5f2ea;
+    background-image:
+      linear-gradient(rgba(15,76,74,0.035) 1px, transparent 1px);
+    background-size: 100% 28px;
+  }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button, input, select, textarea {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+  /* Docket card: the signature element. Dashed perforation on the left
+     edge like a tear-off shipping manifest slip, with a punched notch. */
+  .docket {
+    @apply relative bg-white rounded-card border border-wharf-100 pl-5 pr-4 py-4 shadow-sm;
+  }
+  .docket::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    bottom: 8px;
+    width: 0;
+    border-left: 2px dashed theme('colors.wharf.200');
+  }
+
+  .stamp {
+    @apply inline-flex items-center gap-1 rounded-sm border-2 px-2 py-0.5 text-xs font-display font-bold uppercase tracking-wide;
+    transform: rotate(-2deg);
+  }
+  .stamp-active { @apply border-wharf-500 text-wharf-600; }
+  .stamp-partial { @apply border-cargo-400 text-cargo-500; }
+  .stamp-held { @apply border-alert-500 text-alert-500; }
+  .stamp-soldout { @apply border-ink/40 text-ink/60; }
+
+  .btn-primary {
+    @apply w-full rounded-card bg-wharf-600 text-white font-display font-bold text-base py-4 active:bg-wharf-700 transition-colors disabled:opacity-40;
+  }
+  .btn-secondary {
+    @apply w-full rounded-card bg-white text-wharf-600 border-2 border-wharf-600 font-display font-bold text-base py-4 active:bg-wharf-50 transition-colors;
+  }
+  .btn-ghost {
+    @apply rounded-card text-wharf-600 font-semibold py-2 px-3 active:bg-wharf-50;
+  }
+
+  .field-label {
+    @apply block text-xs font-display font-bold uppercase tracking-wide text-wharf-600/70 mb-1.5;
+  }
+  .field-input {
+    @apply w-full rounded-card border-2 border-wharf-100 bg-white px-4 py-3 text-base focus:border-wharf-400 focus:outline-none;
+  }
+  .stepper-btn {
+    @apply w-12 h-12 rounded-card border-2 border-wharf-200 text-wharf-600 font-display font-bold text-xl flex items-center justify-center active:bg-wharf-50;
+  }
+
+  .stat-card {
+    @apply docket flex flex-col gap-0.5;
+  }
+  .stat-value {
+    @apply font-display font-extrabold text-2xl text-wharf-700 tabular-nums;
+  }
+  .stat-label {
+    @apply text-[11px] uppercase tracking-wide font-semibold text-ink/50;
+  }
+
+  .alert-strip {
+    @apply flex items-center gap-2 rounded-card bg-alert-500/10 border border-alert-500/30 text-alert-600 px-3 py-2 text-sm font-semibold;
+  }
+}
